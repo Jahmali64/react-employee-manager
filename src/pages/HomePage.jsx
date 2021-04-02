@@ -12,10 +12,11 @@ const HomePageStyles = styled.header `
 
     h1{
         font-size: 2.25rem;
+        color: #57514c;
     }
 
     p{
-        color: #767484;
+        color: #bfc0b2;
     }
 `
 

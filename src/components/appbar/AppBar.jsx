@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import {Link} from 'react-router-dom';
 
 const AppBarStyles = styled.nav `
+    background-color: #8e9f3f;
     box-shadow: 0 0 3px 0 gray;
     padding: 1rem;
     ul{
@@ -14,7 +15,8 @@ const AppBarStyles = styled.nav `
     }
     a{
         text-decoration: none;
-        color: grey;
+        color: #303a00;
+        font-size: 1.15rem;
     }
     a:hover, a:active{
         text-decoration: underline;

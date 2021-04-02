@@ -9,19 +9,23 @@ const LoginPageStyles = styled.aside `
     margin: 6rem auto 0;
     h1{
         font-size: 2.25rem;
+        color: #57514c;
+    }
+    .login-header{
+        margin-bottom: 2rem;
+    }
+    label{
+        color: #bfc0b2;
     }
     button{
         cursor: pointer;
-    }
-    button:hover, button:active{
-        color: #f4f4f4;
     }
 `
 
 const LoginPage = (props) => {
     return ( 
         <LoginPageStyles>
-            <header>
+            <header className="login-header">
                 <h1>Login Page</h1>
             </header>
             <FormInput label="Enter a Valid Email" type="email" id="email" id="email"/>

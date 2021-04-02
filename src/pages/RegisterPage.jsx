@@ -11,8 +11,14 @@ const RegisterPageStyles = styled.aside `
         text-align: center;
     }
     h2{
-        font-size: 2rem;
-        font-weight: 700;
+        font-size: 2.25rem;
+        color: #57514c;
+    }
+    .register-header{
+        margin-bottom: 2.5rem;
+    }
+    label, p{
+        color: #bfc0b2;
     }
     .create-account{
         margin-top: 3rem;
@@ -20,17 +26,14 @@ const RegisterPageStyles = styled.aside `
     button{
         cursor: pointer;
     }
-    button:hover, button:active{
-        color: #f4f4f4;
-    }
 `
 
 const RegisterPage = (props) => {
     return ( 
         <RegisterPageStyles>
-            <header>
+            <header className="register-header">
                 <h2>Unlimited Free Trial Sign Up</h2>
-                <p>no credit card required</p>
+                <p>No credit card required</p>
             </header>
             <FormInput label="Name on the Account" type="text" id="name" name="name"/>
             <FormInput label="Valid Email Address" type="email" id="email" name="email"/>
