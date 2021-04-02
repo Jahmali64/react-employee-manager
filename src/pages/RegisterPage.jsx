@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import FormInput from '../components/forms/FormInput';
 import Button from '../components/buttons/Button';
+import {Link} from 'react-router-dom';
 
 const RegisterPageStyles = styled.aside `
     width: 480px;
@@ -20,11 +21,32 @@ const RegisterPageStyles = styled.aside `
     label, p{
         color: #bfc0b2;
     }
+    p > a{
+        color: #a2a78e;
+        font-weight: 600;
+        text-decoration: none;
+    }
+    p > a:hover, p > a:active{
+        text-decoration: underline;
+    }
+    p{
+        color: #8b8b83;
+    }
+    .login-header{
+        margin-bottom: 2rem;
+    }
+    .text-center{
+        text-align: center;
+    }
+    .text-center p{
+        margin-top: 2rem;
+    }
     .create-account{
         margin-top: 3rem;
     }
     button{
         cursor: pointer;
+        margin-bottom: 3.5rem;
     }
 `
 
@@ -39,6 +61,11 @@ const RegisterPage = (props) => {
             <FormInput label="Valid Email Address" type="email" id="email" name="email"/>
             <FormInput label="Password (Min 6 Characters)" type="password" id="password" name="password"/>
             <Button className="create-account" uiStyle="signup" label="Create a Free Account"/>
+            <div className="text-center">
+                <p>Already a member? <Link to="/login">Login here</Link></p>
+                <p>OR</p>
+                <p><Link to="/">Return Home</Link></p>
+            </div>
         </RegisterPageStyles>
     );
 }
