@@ -1,5 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
+import {Redirect} from 'react-router-dom';
+
+import firebaseApp from '../firebase/firebaseConfig'
 
 import FormInput from '../components/forms/FormInput'
 import Button from '../components/buttons/Button'
@@ -42,14 +45,32 @@ const LoginPageStyles = styled.aside `
 `
 
 const LoginPage = (props) => {
-    return ( 
+    const [email, setEmail] = useState('jahmali@anime.com')
+    const [password, setPassword] = useState('anime3')
+    const [isValid, setIsValid] = useState(false);
+
+    const handleClick = (e) => {
+        firebaseApp.auth().signInWithEmailAndPassword(email, password)
+        .then(userCredential => {
+            setIsValid(true)
+        })
+        .catch(error => {
+            console.log(error.code)
+            console.log(error.message)
+        })
+    }
+
+    if(isValid){
+        return <Redirect to="/dashboard"/>
+    }else{
+        return ( 
         <LoginPageStyles>
             <header className="login-header">
                 <h1>Login Page</h1>
             </header>
-            <FormInput label="Enter a Valid Email" type="email" id="email" id="email"/>
-            <FormInput label="Password" type="password" id="password" id="password"/>
-            <Button uiStyle="login" label="Login"/>
+            <FormInput label="Enter a Valid Email" type="email" id="email" id="email" onChange={(e) => setEmail(e.target.value.trim())}/>
+            <FormInput label="Password" type="password" id="password" id="password" onChange={(e) => setPassword(e.target.value.trim())}/>
+            <Button uiStyle="login" label="Login" onClick={handleClick}/>
             <div className="text-center">
                 <p>Not a member? <Link to="/register">Join here</Link></p>
                 <p>OR</p>
@@ -57,6 +78,8 @@ const LoginPage = (props) => {
             </div>
         </LoginPageStyles>
     );
+    }
+    
 }
 
 export default LoginPage;

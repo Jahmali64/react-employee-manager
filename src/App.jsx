@@ -6,6 +6,7 @@ import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import PageNotFound from './pages/404';
 import AppBar from './components/appbar/AppBar';
+import DashBoard from './pages/dashboard/DashBoard';
 
 import firebaseApp from './firebase/firebaseConfig'
 
@@ -17,6 +18,7 @@ function App() {
         <Route exact path="/"><HomePage/></Route>
         <Route path="/login"><LoginPage/></Route>
         <Route path="/register"><RegisterPage/></Route>
+        <Route path="/dashboard"><DashBoard/></Route>
         <Route path="*"><PageNotFound/></Route>
       </Switch>
     </Router>

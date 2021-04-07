@@ -27,6 +27,7 @@ const ButtonStyles = styled.button `
 `
 
 const Button = (props) =>{
+    console.log(props)
     return(
         <ButtonStyles {...props}>
             {props.label}
