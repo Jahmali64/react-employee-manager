@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import styled from 'styled-components';
 import {Redirect} from 'react-router-dom';
 
@@ -7,6 +7,7 @@ import firebaseApp from '../firebase/firebaseConfig'
 import FormInput from '../components/forms/FormInput'
 import Button from '../components/buttons/Button'
 import {Link} from 'react-router-dom'
+import AuthContext from 'auth/AuthContext';
 
 const LoginPageStyles = styled.aside `
     max-width: 380px;
@@ -45,13 +46,15 @@ const LoginPageStyles = styled.aside `
 `
 
 const LoginPage = (props) => {
-    const [email, setEmail] = useState('jahmali@anime.com')
-    const [password, setPassword] = useState('anime3')
+    const auth = useContext(AuthContext)
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
     const [isValid, setIsValid] = useState(false);
 
     const handleClick = (e) => {
         firebaseApp.auth().signInWithEmailAndPassword(email, password)
         .then(userCredential => {
+            auth.isUser = true;
             setIsValid(true)
         })
         .catch(error => {
@@ -64,20 +67,21 @@ const LoginPage = (props) => {
         return <Redirect to="/dashboard"/>
     }else{
         return ( 
-        <LoginPageStyles>
-            <header className="login-header">
-                <h1>Login Page</h1>
-            </header>
-            <FormInput label="Enter a Valid Email" type="email" id="email" id="email" onChange={(e) => setEmail(e.target.value.trim())}/>
-            <FormInput label="Password" type="password" id="password" id="password" onChange={(e) => setPassword(e.target.value.trim())}/>
-            <Button uiStyle="login" label="Login" onClick={handleClick}/>
-            <div className="text-center">
-                <p>Not a member? <Link to="/register">Join here</Link></p>
-                <p>OR</p>
-                <p><Link to="/">Return Home</Link></p>
-            </div>
-        </LoginPageStyles>
-    );
+            <LoginPageStyles>
+                <header className="login-header">
+                    <h1>Login Page</h1>
+                </header>
+                <FormInput label="Enter a Valid Email" type="email" id="email" id="email" onChange={(e) => setEmail(e.target.value.trim())}/>
+                <FormInput label="Password" type="password" id="password" id="password" onChange={(e) => setPassword(e.target.value.trim())}/>
+                <Button uiStyle="login" label="Login" onClick={handleClick}/>
+                {/* firebaseApp.auth().signOut() */}
+                <div className="text-center">
+                    <p>Not a member? <Link to="/register">Join here</Link></p>
+                    <p>OR</p>
+                    <p><Link to="/">Return Home</Link></p>
+                </div>
+            </LoginPageStyles>
+        );
     }
     
 }
